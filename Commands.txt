@@ -1,5 +1,5 @@
 ﻿Made a change
-
+changed in browser
 --CREATE the docker container
 docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v c:/docker/volumes/postgres:/var/lib/postgresql/data  postgres 
 docker exec -it pg-docker psql -U postgres 
