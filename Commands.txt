@@ -1,0 +1,23 @@
+﻿--CREATE the docker container
+docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v c:/docker/volumes/postgres:/var/lib/postgresql/data  postgres 
+docker exec -it pg-docker psql -U postgres 
+
+
+--make a smaller demo
+ docker run --name pg-demo -e POSTGRES_PASSWORD=password1 -d postgres 
+docker exec -it pg-demo psql -U postgres
+
+--run a statement and script through exec
+docker exec -it pg-docker psql -U postgres -c "CREATE TABLE demo_t2(somethingelse int);"  
+
+docker exec -it pg-docker psql -U postgres  -f /var/lib/postgresql/data/scripts/demoscriptinsert.sql 
+docker exec -it pg-docker psql -U postgres
+
+\dt
+
+SELECT * FROM demo_t2;
+truncate table demo_t2;
+
+
+--KILL it
+docker kill $(docker ps -q)
