@@ -1,9 +1,21 @@
 ﻿Made a change
 changed in browser
 and then got that change and then pushing back up
+
+
 --CREATE the docker container
 docker run --rm   --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v c:/docker/volumes/postgres:/var/lib/postgresql/data  postgres 
+
 docker exec -it pg-docker psql -U postgres 
+
+docker run --rm   --name pg-admin -e "PGADMIN_DEFAULT_EMAIL=benson.choy@intuitas.com" -p 5050:80 -e "PGADMIN_DEFAULT_PASSWORD=SuperSecret" -v c:/docker/volumes/pgadmin:/var/lib/pgadmin  -d dpage/pgadmin4
+
+docker inspect pg-docker
+
+
+
+
+
 
 
 --make a smaller demo
